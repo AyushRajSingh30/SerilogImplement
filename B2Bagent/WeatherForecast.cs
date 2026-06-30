@@ -1,4 +1,4 @@
-namespace WebApplication1
+namespace B2Bagent
 {
     public class WeatherForecast
     {

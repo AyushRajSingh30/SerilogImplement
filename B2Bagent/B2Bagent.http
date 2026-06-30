@@ -1,0 +1,6 @@
+@B2Bagent_HostAddress = http://localhost:5220
+
+GET {{B2Bagent_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

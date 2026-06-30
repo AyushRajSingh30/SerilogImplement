@@ -1,13 +1,20 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using WebApplication1.Model.Entity;
-namespace WebApplication1.Controllers
+using B2Bagent.Model.Entity;
+namespace B2Bagent.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class Auth : Controller
     {
+        private readonly IConfiguration _configuration;
+
+        public Auth(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LogModel request)
         {
@@ -16,7 +23,8 @@ namespace WebApplication1.Controllers
             if (request.Username == "admin" && request.Password == "12345678")
             {
                 Log.Information("User {Username} logged in successfully", request.Username);
-                return Ok(new { message = "Login successful" });
+                var extraInfo = _configuration["LoginSuccessExtraData"] ?? "No extra info";
+                return Ok(new { message = "Login successful", extraData = extraInfo });
             }
             else
             {

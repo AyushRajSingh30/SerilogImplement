@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Model.Entity
+namespace B2Bagent.Model.Entity
 {
     public class LogModel
     {
